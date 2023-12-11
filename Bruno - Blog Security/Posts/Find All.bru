@@ -1,0 +1,15 @@
+meta {
+  name: Find All
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{base_url}}/posts
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDIwNDI2NjAsImV4cCI6MTcwMjA0NDQ2MCwic3ViIjoic2FtQHNhbS5mciIsImVtYWlsIjoic2FtQHNhbS5mciJ9.iJDhmzqN9QtkqoafxFk6Kn95ssf5Po23x1e7Pf098OLx-3B92YRFa2itUAMAoXvgt-r9zX3XcvKM662uDOtiig
+}
