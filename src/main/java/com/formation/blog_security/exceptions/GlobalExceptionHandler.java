@@ -40,6 +40,21 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(jsonErrors, HttpStatus.BAD_REQUEST);
     }
 
+    @ExceptionHandler(NoHandlerFoundException.class)
+    public ResponseEntity<String> handleNotFoundException(NoHandlerFoundException exception) {
+        log.info("Handling NoHandlerFoundException");
+
+        Map<String, String> errors = Map.of("Not found", exception.getMessage());
+
+        String jsonErrors = prepareResponse(errors);
+        if (jsonErrors.equals("Internal server error")) {
+            return new ResponseEntity<>(jsonErrors, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+        log.info("Responding with errors: {}", jsonErrors);
+        return new ResponseEntity<>(jsonErrors, HttpStatus.NOT_FOUND);
+    }
+
     @ExceptionHandler({Exception.class, ServletException.class})
     public ResponseEntity<String> handleException(Exception exception) {
         log.info("Handling Exception");
